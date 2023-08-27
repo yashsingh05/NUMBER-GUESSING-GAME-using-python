@@ -1,0 +1,55 @@
+import random
+
+# Define a function to generate a random number between 1 and 9
+def random_number():
+    random_number = random.randint(1, 9)
+    return random_number
+
+# Display a welcome message for the number guessing game
+print("=====WELCOME TO THE NUMBER GUESSING GAME=====")
+
+chances = 0
+
+# Main loop for the game
+while True:
+    # Ask the user if they want to play the game
+    choice = input("DO YOU WANT TO PLAY THE NUMBER GUESSING GAME? (y/n)\n")
+    
+    if choice.lower() == 'y':
+        print("GENERATING YOUR NUMBER.......")
+        
+        # Generate a random number using the random_number function
+        secret_number = random_number()
+        
+        while True:
+            chances += 1
+            
+            # Get the user's guessed number
+            user_number = int(input("***ENTER YOUR GUESSED NUMBER***"))
+            
+            # Check if the user's number is out of range
+            if user_number > 9 or user_number < 1:
+                print("NUMBER OUT OF RANGE")
+                print("PLEASE ENTER A NUMBER BETWEEN 1 AND 9 AND TRY AGAIN")
+                
+            elif user_number == secret_number:
+                print("THE RANDOM NUMBER IS:", secret_number)
+                print("CONGRATULATIONS! YOU HAVE GUESSED THE RIGHT NUMBER!")
+                chances = 0
+                break
+                
+            elif user_number < secret_number:
+                print("NOT EVEN CLOSE! TRY A BIGGER NUMBER")
+                
+            elif user_number > secret_number:
+                print("NOT EVEN CLOSE! TRY A SMALLER NUMBER")
+                
+        # Ask the user if they want to play again or exit
+        choice = input("DO YOU WANT TO PLAY AGAIN? (y/n)\n")
+        
+        if choice.lower() == 'n':
+            print("EXITING....")
+            break
+            
+    else:
+        print("INVALID INPUT")
